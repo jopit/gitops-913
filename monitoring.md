@@ -2,13 +2,15 @@
 
 ## What is GitOps and ArgoCD
 
-One big challenge when following a continuous delivery approach to application development is consistently delivering applications across multi-cluster environments. Gitops is a declaritive approach to addressing this.  Application configuration is stored in Git, which is treated as the single source of truth. This allows configuration to be version controlled, and provides for auditability of all changes. The challenge then becomes finding an easy and automated way to continuousl release these changes. ArgoCD is a declarative GitOps continuous delivery tool for Kubernetes.  It allows application deployment and lifecycle management to be automated, auditable and easy to understand.
+One big challenge when following a continuous delivery approach to application development for Kubernetes is consistently delivering applications across multi-cluster environments. Gitops is a declaritive approach to addressing this.  Application configuration is stored in Git, which is treated as the single source of truth. This allows configuration to be version controlled, and provides for auditability of all changes.
+
+The challenge then becomes finding an easy and automated way to continuousl release these changes. ArgoCD is a declarative GitOps continuous delivery tool for Kubernetes.  It allows application deployment and lifecycle management to be automated, auditable and easy to understand.
 
 For OpenShift, the GitOps Operator allows for easy installation of one or more argocd instances on the cluster.
 
 ## What is Prometheus
 
-Prometheus is an open source monitoring and alerting tool that gathers metrics exposed by software components, and provides the ablility to run queries against these metrics. The metrics can then be visualized using Grafana dashboards. The GitOps Operator automatically configures the OpenShift monitoring stack to scrape metrics from any ArgoCD instance it installs.
+Prometheus is an open source monitoring and alerting tool that gathers metrics exposed by software components, and provides the ablility to run queries against these metrics. The metrics can then be visualized using Grafana dashboards. The GitOps Operator automatically configures the OpenShift monitoring stack to scrape metrics from any ArgoCD instance the operator installs.
 
 Two of the types of metrics supported by Prometheus are **counters** and **guages**
 
