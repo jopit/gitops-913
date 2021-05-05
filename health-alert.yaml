@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: argocd-health-alert
+spec:
+  groups:
+  - name: argocd-health-alert
+    rules:
+    - alert: ArgoCDHealthAlert
+      annotations:
+        message: |
+          Application {{ $labels.name }} has health status Missing
+      expr: argocd_app_info{health_status="Missing"} > 0
+      labels:
+        severity: warning

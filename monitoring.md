@@ -38,3 +38,23 @@ The second set of metrics concerns the ArgoCD API server request and response ac
 ## What is alerting
 
 Prometheus can be configured to raise an alert when some particular metric exceeds a particular value. Out of the box, the GitOps Operator creates an alert rule to raise an alert for ArgoCD  applications that are out of sync. This alert will show up in the OpenShift admin console.
+
+You can add additional alert rules.  For example, to add an alert rule that will fire when an ArgoCD application has a health status of missing, create a file called *health-alert.yaml* with the following contents
+```
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: argocd-health-alert
+spec:
+  groups:
+  - name: argocd-health-alert
+    rules:
+    - alert: ArgoCDHealthAlert
+      annotations:
+        message: |
+          Application {{ $labels.name }} has health status Missing
+      expr: argocd_app_info{health_status="Missing"} > 0
+      labels:
+        severity: warning
+```
+and then run the command `oc apply -f health-alert.yaml -n <namespace>`, where *<namespace>* is the namespace into which ArgoCD is installed.
