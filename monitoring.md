@@ -57,4 +57,4 @@ spec:
       labels:
         severity: warning
 ```
-and then run the command `oc apply -f health-alert.yaml -n <namespace>`, where *<namespace>* is the namespace into which ArgoCD is installed.
+and then run the command `oc apply -f health-alert.yaml -n <namespace>`, where `<namespace>` is the namespace into which ArgoCD is installed.
